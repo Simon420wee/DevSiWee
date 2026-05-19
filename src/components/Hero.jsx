@@ -103,7 +103,7 @@ export default function Hero({ lang, setLang }) {
         <span className="hero__bottom-label hero__bottom-label--scroll">
           {t.scroll}
         </span>
-        <span className="hero__bottom-label">CHAT WITH US</span>
+        <a href="#contact" className="hero__bottom-label hero__bottom-label--chat">CHAT WITH US</a>
       </motion.div>
     </section>
   )

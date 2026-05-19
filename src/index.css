@@ -556,11 +556,20 @@ body {
   text-transform: uppercase;
   color: rgba(226, 232, 244, 0.2);
   cursor: default;
-  transition: color 0.25s;
+  text-decoration: none;
+  transition: color 0.3s, text-shadow 0.3s, letter-spacing 0.3s;
 }
 
-.hero__bottom-label:hover {
-  color: rgba(226, 232, 244, 0.5);
+.hero__bottom-label--chat {
+  cursor: pointer;
+}
+
+.hero__bottom-label--chat:hover {
+  color: rgba(180, 240, 255, 0.92);
+  text-shadow:
+    0 0 8px rgba(56, 189, 248, 0.85),
+    0 0 22px rgba(34, 211, 238, 0.45);
+  letter-spacing: 0.26em;
 }
 
 .hero__bottom-label--scroll {
