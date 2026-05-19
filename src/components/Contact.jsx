@@ -1,14 +1,13 @@
 import { motion } from 'framer-motion'
-import { Mail, AtSign, Phone } from 'lucide-react'
+import { Mail, AtSign } from 'lucide-react'
 import { translations } from '../i18n'
 
 export default function Contact({ lang }) {
   const t = translations[lang].contact
 
   const items = [
-    { icon: Mail,    label: t.email,     href: `mailto:${t.email}` },
-    { icon: AtSign,  label: t.instagram, href: 'https://instagram.com/devsiwee' },
-    { icon: Phone,   label: t.phone,     href: `tel:${t.phone.replace(/\s/g, '')}` },
+    { icon: Mail,   label: t.email,     href: `mailto:${t.email}` },
+    { icon: AtSign, label: t.instagram, href: 'https://instagram.com/devsiwee' },
   ]
 
   return (

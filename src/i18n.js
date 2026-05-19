@@ -31,9 +31,8 @@ export const translations = {
     contact: {
       title: "Let's Build Something",
       body: 'Need a modern website or animated landing page? Contact DevSiWee.',
-      email: 'support@example.com',
+      email: 'devsiwee@gmail.com',
       instagram: '@devsiwee',
-      phone: '+381 XX XXX XXXX',
       cta: 'Contact Now',
     },
     footer: {
@@ -79,9 +78,8 @@ export const translations = {
     contact: {
       title: 'Hajde Da Gradimo',
       body: 'Trebate moderan sajt ili animiranu landing stranu? Kontaktirajte DevSiWee.',
-      email: 'support@example.com',
+      email: 'devsiwee@gmail.com',
       instagram: '@devsiwee',
-      phone: '+381 XX XXX XXXX',
       cta: 'Kontaktirajte Nas',
     },
     footer: {
