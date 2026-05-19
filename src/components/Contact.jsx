@@ -35,7 +35,9 @@ export default function Contact({ lang }) {
         </div>
 
         <motion.a
-          href={`mailto:${t.email}`}
+          href={`https://mail.google.com/mail/?view=cm&to=${t.email}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="btn btn--primary btn--lg"
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
