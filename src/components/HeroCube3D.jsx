@@ -168,12 +168,14 @@ function Particles() {
  *   Near (r = 3–6) : 140 slightly larger, faster — gives parallax depth
  * Both layers rotate at different speeds to create parallax.
  */
+const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768
+
 function StarField() {
   const farRef  = useRef()
   const nearRef = useRef()
 
   const farPos = useMemo(() => {
-    const N = 500, pos = new Float32Array(N * 3)
+    const N = IS_MOBILE ? 220 : 500, pos = new Float32Array(N * 3)
     for (let i = 0; i < N; i++) {
       const r = 9 + (i * 0.018 % 9)
       const θ = (i * 2.399963) % (Math.PI * 2)   // golden-angle azimuth
@@ -186,7 +188,7 @@ function StarField() {
   }, [])
 
   const nearPos = useMemo(() => {
-    const N = 140, pos = new Float32Array(N * 3)
+    const N = IS_MOBILE ? 60 : 140, pos = new Float32Array(N * 3)
     for (let i = 0; i < N; i++) {
       const r = 3.2 + (i * 0.02 % 2.6)
       const θ = (i * 2.399963 + 1.1) % (Math.PI * 2)
@@ -215,7 +217,7 @@ function StarField() {
       {/* Distant stars — small, cool white */}
       <points ref={farRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={farPos} count={500} itemSize={3} />
+          <bufferAttribute attach="attributes-position" array={farPos} count={IS_MOBILE ? 220 : 500} itemSize={3} />
         </bufferGeometry>
         <pointsMaterial color="#d0e8ff" size={0.016} transparent opacity={0.62}
           depthWrite={false} sizeAttenuation blending={THREE.AdditiveBlending} />
@@ -224,7 +226,7 @@ function StarField() {
       {/* Nearer stars — slightly larger, warmer white, create parallax depth */}
       <points ref={nearRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" array={nearPos} count={140} itemSize={3} />
+          <bufferAttribute attach="attributes-position" array={nearPos} count={IS_MOBILE ? 60 : 140} itemSize={3} />
         </bufferGeometry>
         <pointsMaterial color="#e8f4ff" size={0.028} transparent opacity={0.48}
           depthWrite={false} sizeAttenuation blending={THREE.AdditiveBlending} />
@@ -359,9 +361,10 @@ function Asteroid({ cfg, idx }) {
 }
 
 function SpaceDebris() {
+  const cfg = IS_MOBILE ? DEBRIS_CFG.slice(0, 4) : DEBRIS_CFG
   return (
     <>
-      {DEBRIS_CFG.map((cfg, i) => <Asteroid key={i} cfg={cfg} idx={i} />)}
+      {cfg.map((c, i) => <Asteroid key={i} cfg={c} idx={i} />)}
     </>
   )
 }
