@@ -666,7 +666,7 @@ export default function HeroCube3D() {
     <div style={{ width: 'min(400px, 94vw)', height: 'min(400px, 94vw)', position: 'relative', cursor: 'default' }}>
       <Canvas
         camera={{ position: [0, 0, 2.9], fov: 48, near: 0.05 }}
-        gl={{ alpha: true, antialias: true }}
+        gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
         dpr={[1, 1.5]}
         style={{ background: 'transparent' }}
       >
