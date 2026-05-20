@@ -1470,7 +1470,8 @@ body {
   }
 
   .hero {
-    padding: 64px 1.25rem 60px;
+    padding: 0 1.25rem;
+    justify-content: center;
   }
 
   .hero::before {
