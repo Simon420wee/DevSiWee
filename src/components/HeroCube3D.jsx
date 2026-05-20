@@ -30,28 +30,24 @@ const FLOOR_VERT = /* glsl */`
   }
 `
 const FLOOR_FRAG = /* glsl */`
-  uniform float uOpacity;
   varying vec2 vUv;
   void main() {
     float dist  = length(vUv - 0.5) * 2.0;
-    float alpha = pow(max(0.0, 1.0 - dist), 1.6) * uOpacity;
+    float alpha = pow(max(0.0, 1.0 - dist), 1.6) * 0.28;
     vec3  col   = vec3(0.082, 0.831, 0.976);
     gl_FragColor = vec4(col, alpha);
   }
 `
 
 function PlatformGlow({ hovered }) {
-  const matRef    = useRef()
-  const opacityRef = useRef(0.22)
-
-  useFrame((state, dt) => {
+  const matRef = useRef()
+  useFrame((state) => {
     if (!matRef.current) return
-    const base   = hovered ? 0.36 : 0.22
-    const pulse  = Math.sin(state.clock.elapsedTime * 0.5) * 0.06
-    const target = base + pulse
-    const k      = 1 - Math.pow(0.94, dt * 60)
-    opacityRef.current = THREE.MathUtils.lerp(opacityRef.current, target, k)
-    matRef.current.uniforms.uOpacity.value = opacityRef.current
+    const base  = hovered ? 0.36 : 0.22
+    const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.06
+    matRef.current.opacity = THREE.MathUtils.lerp(
+      matRef.current.opacity ?? base, base + pulse, 0.06
+    )
   })
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.62, 0]}>
@@ -60,7 +56,6 @@ function PlatformGlow({ hovered }) {
         ref={matRef}
         vertexShader={FLOOR_VERT}
         fragmentShader={FLOOR_FRAG}
-        uniforms={{ uOpacity: { value: 0.22 } }}
         transparent depthWrite={false}
         blending={THREE.AdditiveBlending}
         side={THREE.FrontSide}
@@ -78,9 +73,8 @@ function ChakraRing({ cfg, hovered }) {
   useFrame((_, dt) => {
     if (!ref.current || !matRef.current) return
     ref.current.rotateOnAxis(cfg.axis, cfg.speed * dt)
-    const k = 1 - Math.pow(0.95, dt * 60)
     matRef.current.opacity = THREE.MathUtils.lerp(
-      matRef.current.opacity, hovered ? 0.65 : 0.28, k
+      matRef.current.opacity, hovered ? 0.65 : 0.28, 0.05
     )
   })
   return (
@@ -519,20 +513,19 @@ function NeonCube({ hovered, setHovered, hoverStateRef }) {
   const innerMatRef = useRef()
   const edgesGeo    = useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(1.1, 1.1, 1.1)), [])
 
-  useFrame((_, dt) => {
+  useFrame(() => {
     if (!groupRef.current || !edgesMatRef.current) return
-    groupRef.current.rotation.y += 0.0024 * dt * 60
-    groupRef.current.rotation.x += 0.0009 * dt * 60
-    groupRef.current.rotation.z += 0.0005 * dt * 60
+    groupRef.current.rotation.y += 0.0024
+    groupRef.current.rotation.x += 0.0009
+    groupRef.current.rotation.z += 0.0005
 
-    const k = 1 - Math.pow(0.96, dt * 60)
-    edgesMatRef.current.color.lerp(hovered ? CLR_EDGE_HOV : CLR_EDGE, k)
+    edgesMatRef.current.color.lerp(hovered ? CLR_EDGE_HOV : CLR_EDGE, 0.04)
     edgesMatRef.current.opacity = THREE.MathUtils.lerp(
-      edgesMatRef.current.opacity, hovered ? 1.0 : 0.92, k
+      edgesMatRef.current.opacity, hovered ? 1.0 : 0.92, 0.04
     )
     if (innerMatRef.current) {
       innerMatRef.current.opacity = THREE.MathUtils.lerp(
-        innerMatRef.current.opacity, hovered ? 0.10 : 0.055, k
+        innerMatRef.current.opacity, hovered ? 0.10 : 0.055, 0.04
       )
     }
   })
@@ -597,16 +590,15 @@ function SceneLights({ hovered }) {
   const coreRef = useRef()
   const rimRef  = useRef()
 
-  useFrame((_, dt) => {
-    const k = 1 - Math.pow(0.96, dt * 60)
+  useFrame(() => {
     if (coreRef.current) {
       coreRef.current.intensity = THREE.MathUtils.lerp(
-        coreRef.current.intensity, hovered ? 16 : 8, k
+        coreRef.current.intensity, hovered ? 16 : 8, 0.04
       )
     }
     if (rimRef.current) {
       rimRef.current.intensity = THREE.MathUtils.lerp(
-        rimRef.current.intensity, hovered ? 4 : 2, k
+        rimRef.current.intensity, hovered ? 4 : 2, 0.04
       )
     }
   })
@@ -663,11 +655,11 @@ export default function HeroCube3D() {
   const hoverStateRef = useRef({ active: false, point: null })
 
   return (
-    <div style={{ width: 'min(400px, 94vw)', height: 'min(400px, 94vw)', position: 'relative', cursor: 'default' }}>
+    <div style={{ width: 400, height: 400, position: 'relative', cursor: 'default' }}>
       <Canvas
         camera={{ position: [0, 0, 2.9], fov: 48, near: 0.05 }}
         gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         style={{ background: 'transparent' }}
       >
         <Scene hovered={hovered} setHovered={setHovered} hoverStateRef={hoverStateRef} />
