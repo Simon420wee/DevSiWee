@@ -663,10 +663,10 @@ export default function HeroCube3D() {
   const hoverStateRef = useRef({ active: false, point: null })
 
   return (
-    <div style={{ width: 400, height: 400, position: 'relative', cursor: 'default' }}>
+    <div style={{ width: 'min(400px, 94vw)', height: 'min(400px, 94vw)', position: 'relative', cursor: 'default' }}>
       <Canvas
         camera={{ position: [0, 0, 2.9], fov: 48, near: 0.05 }}
-        gl={{ alpha: true, antialias: true, premultipliedAlpha: false }}
+        gl={{ alpha: true, antialias: true }}
         dpr={[1, 1.5]}
         style={{ background: 'transparent' }}
       >
