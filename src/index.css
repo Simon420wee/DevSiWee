@@ -607,564 +607,100 @@ body {
   50%       { opacity: 0.78; transform: scale(1.6); }
 }
 
-/* Energy streaks removed — replaced by space atmosphere in Three.js and CSS gradients */
+/* ─── HERO TEXT BLOCK ────────────────────────────────── */
+/* (dcube/cube-scene CSS removed — Three.js cube replaced by text-based hero) */
 
-/* ─── DIGITAL CUBE WRAPPER ───────────────────────────── */
-.dcube-wrapper {
-  position: relative;
-  width: 400px;
-  height: 400px;
+.hero__text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.06);
+  padding: 7px 16px;
+  border-radius: 50px;
+  margin-bottom: 2.8rem;
+  backdrop-filter: blur(8px);
+}
+
+.hero__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.9);
+  animation: badge-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.6); }
+}
+
+.hero__headline-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.hero__line {
+  display: block;
+  font-size: clamp(3.2rem, 9vw, 7.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.hero__line--static {
+  color: #e2e8f4;
+  margin-bottom: 0.1em;
+}
+
+.hero__morph-wrap {
+  height: clamp(3.5rem, 9.5vw, 8rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: cube-float 9s ease-in-out infinite;
+  overflow: hidden;
 }
 
-@keyframes cube-float {
-  0%, 100% { transform: translateY(0px);  }
-  50%       { transform: translateY(-22px); }
+.hero__line--morph {
+  background: linear-gradient(135deg, #38bdf8 0%, #a78bfa 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 32px rgba(56, 189, 248, 0.25));
 }
 
-/* ─── CUBE SCENE (platform + mini cubes + main cube) ─── */
-.cube-scene {
-  position: relative;
-  width: 520px;
-  height: 520px;
+.hero__subtitle {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: rgba(226, 232, 244, 0.4);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.8rem;
+}
+
+.hero__ctas {
   display: flex;
-  align-items: center;
+  gap: 1rem;
   justify-content: center;
-}
-
-/* Glowing platform base beneath the cube */
-.cube-platform {
-  position: absolute;
-  bottom: 62px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 20px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(56, 189, 248, 0.6) 0%,
-    rgba(56, 189, 248, 0.2) 40%,
-    transparent 70%
-  );
-  filter: blur(7px);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* ─── MINI CUBES ─────────────────────────────────────── */
-.mini-cube {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.mini-cube--tl { top:    52px; left:  46px; animation: mc-float-a  7s ease-in-out infinite; }
-.mini-cube--tr { top:    64px; right: 46px; animation: mc-float-b  9s ease-in-out infinite; }
-.mini-cube--bl { bottom: 92px; left:  54px; animation: mc-float-c  8s ease-in-out infinite; }
-.mini-cube--br { bottom: 82px; right: 54px; animation: mc-float-a 11s ease-in-out infinite reverse; }
-
-@keyframes mc-float-a {
-  0%, 100% { transform: translateY(0px)   rotate(0deg);  }
-  50%       { transform: translateY(-10px) rotate(3deg);  }
-}
-@keyframes mc-float-b {
-  0%, 100% { transform: translateY(0px)  rotate(0deg);  }
-  50%       { transform: translateY(-8px) rotate(-4deg); }
-}
-@keyframes mc-float-c {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50%       { transform: translateY(8px) rotate(2deg); }
-}
-
-.mini-cube__persp {
-  perspective: 120px;
-  width: 28px;
-  height: 28px;
-}
-
-.mini-cube__inner {
-  width: 28px;
-  height: 28px;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: mc-rotate 12s linear infinite;
-}
-
-.mini-cube--tr .mini-cube__inner { animation-direction: reverse; }
-.mini-cube--bl .mini-cube__inner { animation-duration: 18s; }
-
-@keyframes mc-rotate {
-  from { transform: rotateX(20deg) rotateY(0deg);   }
-  to   { transform: rotateX(20deg) rotateY(360deg); }
-}
-
-.mc-face {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  background: rgba(14, 165, 233, 0.04);
-  border: 1px solid rgba(56, 189, 248, 0.65);
-  box-shadow: inset 0 0 8px rgba(56, 189, 248, 0.12);
-}
-
-.mc-face--front  { transform: translateZ(14px); }
-.mc-face--back   { transform: rotateY(180deg) translateZ(14px); }
-.mc-face--right  { transform: rotateY(90deg)  translateZ(14px); }
-.mc-face--left   { transform: rotateY(-90deg) translateZ(14px); }
-.mc-face--top    { transform: rotateX(90deg)  translateZ(14px); }
-.mc-face--bottom { transform: rotateX(-90deg) translateZ(14px); }
-
-/* ─── CHAKRA / ENERGY RINGS (permanent, rotating) ────── */
-
-/*
-  chakra-field is a zero-size anchor at cube center.
-  It slowly orbits (55s), so the elliptical rings precess
-  over time — making the whole field feel alive and organic.
-  Each ring also spins independently, creating compound motion.
-*/
-.chakra-field {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  z-index: 5;
-  animation: chakra-orbit 55s linear infinite;
-}
-
-.chakra-ring,
-.chakra-comet {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  border-style: solid;
-  transition: border-color 1s ease, opacity 1s ease;
-}
-
-/* ── Base rings: ellipses at different aspect ratios ─────── */
-.chakra-ring--1 {
-  width: 16px;  height: 13px;
-  margin-top: -6px;  margin-left: -8px;
-  border-width: 1px;
-  border-color: rgba(56, 189, 248, 0.60);
-  animation: chakra-cw  3.5s linear infinite;
-  animation-delay: -1.1s;
-}
-.chakra-ring--2 {
-  width: 32px;  height: 27px;
-  margin-top: -13px; margin-left: -16px;
-  border-width: 1px;
-  border-color: rgba(56, 189, 248, 0.46);
-  animation: chakra-ccw 6.5s linear infinite;
-  animation-delay: -3.2s;
-}
-.chakra-ring--3 {
-  width: 50px;  height: 43px;
-  margin-top: -21px; margin-left: -25px;
-  border-width: 0.75px;
-  border-color: rgba(56, 189, 248, 0.36);
-  animation: chakra-cw  10s linear infinite;
-  animation-delay: -5.5s;
-}
-.chakra-ring--4 {
-  width: 68px;  height: 59px;
-  margin-top: -29px; margin-left: -34px;
-  border-width: 1px;
-  border-color: rgba(14, 165, 233, 0.28);
-  animation: chakra-ccw 15s linear infinite;
-  animation-delay: -2.4s;
-}
-.chakra-ring--5 {
-  width: 86px;  height: 76px;
-  margin-top: -38px; margin-left: -43px;
-  border-width: 0.75px;
-  border-color: rgba(56, 189, 248, 0.20);
-  animation: chakra-cw  21s linear infinite;
-  animation-delay: -8s;
-}
-.chakra-ring--6 {
-  width: 104px; height: 92px;
-  margin-top: -46px; margin-left: -52px;
-  border-width: 1px;
-  border-color: rgba(139, 92, 246, 0.17);
-  animation: chakra-ccw 28s linear infinite;
-  animation-delay: -3.8s;
-}
-.chakra-ring--7 {
-  width: 122px; height: 108px;
-  margin-top: -54px; margin-left: -61px;
-  border-width: 0.75px;
-  border-color: rgba(56, 189, 248, 0.11);
-  animation: chakra-cw  36s linear infinite;
-  animation-delay: -11s;
-}
-
-/* ── Comet arcs: partial border = energy sweep ───────────── */
-/*
-  Only 2-3 sides are colored → looks like a comet sweeping
-  around the ring instead of a uniform circle (not radar).
-*/
-.chakra-comet--1 {
-  width: 58px;  height: 51px;
-  margin-top: -25px; margin-left: -29px;
-  border-width: 1.5px;
-  border-color: transparent;
-  border-top-color:   rgba(56, 189, 248, 0.82);
-  border-right-color: rgba(56, 189, 248, 0.38);
-  filter: blur(0.5px);
-  animation: chakra-cw 4s linear infinite;
-  animation-delay: -0.7s;
-  transition: border-color 1s ease;
-}
-.chakra-comet--2 {
-  width: 94px;  height: 84px;
-  margin-top: -42px; margin-left: -47px;
-  border-width: 1px;
-  border-color: transparent;
-  border-bottom-color: rgba(56, 189, 248, 0.68);
-  border-left-color:   rgba(56, 189, 248, 0.28);
-  filter: blur(0.5px);
-  animation: chakra-ccw 6.8s linear infinite;
-  animation-delay: -3s;
-  transition: border-color 1s ease;
-}
-.chakra-comet--3 {
-  width: 38px;  height: 34px;
-  margin-top: -17px; margin-left: -19px;
-  border-width: 1.5px;
-  border-color: transparent;
-  border-top-color:  rgba(6, 182, 212, 0.70);
-  border-left-color: rgba(6, 182, 212, 0.25);
-  filter: blur(0.5px);
-  animation: chakra-ccw 5.2s linear infinite;
-  animation-delay: -2.1s;
-  transition: border-color 1s ease;
-}
-
-/* ── Hover rings: hidden by default ─────────────────────── */
-.chakra-ring--h1,
-.chakra-ring--h2,
-.chakra-ring--h3 { opacity: 0; }
-
-.chakra-ring--h1 {
-  width: 40px;  height: 36px;
-  margin-top: -18px; margin-left: -20px;
-  border-width: 1px;
-  border-color: rgba(56, 189, 248, 0.75);
-  animation: chakra-ccw 5.5s linear infinite;
-  animation-delay: -1.8s;
-}
-.chakra-ring--h2 {
-  width: 74px;  height: 66px;
-  margin-top: -33px; margin-left: -37px;
-  border-width: 1px;
-  border-color: rgba(56, 189, 248, 0.58);
-  animation: chakra-cw  9.5s linear infinite;
-  animation-delay: -3.5s;
-}
-.chakra-ring--h3 {
-  width: 108px; height: 96px;
-  margin-top: -48px; margin-left: -54px;
-  border-width: 1px;
-  border-color: rgba(6, 182, 212, 0.40);
-  animation: chakra-ccw 15s linear infinite;
-  animation-delay: -6.5s;
-}
-
-/* ── Active (hover) state ────────────────────────────────── */
-.chakra-field--active .chakra-ring--1 { border-color: rgba(56, 189, 248, 0.92); }
-.chakra-field--active .chakra-ring--2 { border-color: rgba(56, 189, 248, 0.72); }
-.chakra-field--active .chakra-ring--3 { border-color: rgba(56, 189, 248, 0.56); }
-.chakra-field--active .chakra-ring--4 { border-color: rgba(56, 189, 248, 0.44); }
-.chakra-field--active .chakra-ring--5 { border-color: rgba(56, 189, 248, 0.33); }
-.chakra-field--active .chakra-ring--6 { border-color: rgba(167, 139, 250, 0.30); }
-.chakra-field--active .chakra-ring--7 { border-color: rgba(56, 189, 248, 0.22); }
-
-.chakra-field--active .chakra-comet--1 {
-  border-top-color:   rgba(56, 189, 248, 1.0);
-  border-right-color: rgba(56, 189, 248, 0.52);
-}
-.chakra-field--active .chakra-comet--2 {
-  border-bottom-color: rgba(56, 189, 248, 0.88);
-  border-left-color:   rgba(56, 189, 248, 0.40);
-}
-.chakra-field--active .chakra-comet--3 {
-  border-top-color:  rgba(6, 182, 212, 0.90);
-  border-left-color: rgba(6, 182, 212, 0.38);
-}
-
-.chakra-field--active .chakra-ring--h1 { opacity: 1; }
-.chakra-field--active .chakra-ring--h2 { opacity: 1; }
-.chakra-field--active .chakra-ring--h3 { opacity: 1; }
-
-@keyframes chakra-orbit { to { transform: rotate( 360deg); } }
-@keyframes chakra-cw    { to { transform: rotate( 360deg); } }
-@keyframes chakra-ccw   { to { transform: rotate(-360deg); } }
-
-/* ─── NEON SMOKE / ENERGY MIST (hover only) ──────────────── */
-.dcube-smoke {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.4s ease;
-  z-index: 1;
-}
-
-.dcube-smoke--active { opacity: 1; }
-
-.smoke-blob {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Large central cyan bloom */
-.smoke-blob--1 {
-  width: 240px; height: 200px;
-  top: 50%; left: 50%;
-  margin-top: -100px; margin-left: -120px;
-  background: radial-gradient(ellipse,
-    rgba(56, 189, 248, 0.16) 0%,
-    rgba(56, 189, 248, 0.05) 50%,
-    transparent 70%
-  );
-  filter: blur(28px);
-  animation: smoke-drift-a 10s ease-in-out infinite;
-}
-
-/* Offset top-left violet mist */
-.smoke-blob--2 {
-  width: 170px; height: 145px;
-  top: 22%; left: 20%;
-  background: radial-gradient(ellipse,
-    rgba(139, 92, 246, 0.12) 0%,
-    transparent 65%
-  );
-  filter: blur(24px);
-  animation: smoke-drift-b 13s ease-in-out infinite;
-  animation-delay: -4s;
-}
-
-/* Offset bottom-right cyan mist */
-.smoke-blob--3 {
-  width: 155px; height: 175px;
-  top: 48%; left: 46%;
-  background: radial-gradient(ellipse,
-    rgba(6, 182, 212, 0.11) 0%,
-    transparent 65%
-  );
-  filter: blur(30px);
-  animation: smoke-drift-a 16s ease-in-out infinite;
-  animation-delay: -8s;
-}
-
-/* Tight bright core glow */
-.smoke-blob--4 {
-  width: 110px; height: 110px;
-  top: 50%; left: 50%;
-  margin-top: -55px; margin-left: -55px;
-  background: radial-gradient(circle,
-    rgba(56, 189, 248, 0.22) 0%,
-    rgba(6, 182, 212, 0.08) 45%,
-    transparent 70%
-  );
-  filter: blur(14px);
-  animation: smoke-core 8s ease-in-out infinite;
-}
-
-/* Wide diffuse outer haze */
-.smoke-blob--5 {
-  width: 360px; height: 290px;
-  top: 50%; left: 50%;
-  margin-top: -145px; margin-left: -180px;
-  background: radial-gradient(ellipse,
-    rgba(14, 165, 233, 0.07) 0%,
-    transparent 60%
-  );
-  filter: blur(50px);
-  animation: smoke-drift-b 20s ease-in-out infinite;
-  animation-delay: -10s;
-}
-
-@keyframes smoke-drift-a {
-  0%, 100% { transform: scale(1)    translate(0,     0);    }
-  35%       { transform: scale(1.08) translate(-8px, -14px); }
-  65%       { transform: scale(0.95) translate( 7px,   9px); }
-}
-@keyframes smoke-drift-b {
-  0%, 100% { transform: scale(1)    translate(0,    0);    }
-  40%       { transform: scale(1.06) translate(10px, -9px); }
-  70%       { transform: scale(0.97) translate(-6px, 11px); }
-}
-@keyframes smoke-core {
-  0%, 100% { transform: scale(1);    opacity: 0.9; }
-  50%       { transform: scale(1.18); opacity: 0.6; }
-}
-
-/* Intensify the ambient glow when hovered */
-.dcube-wrapper--hovered .dcube-glow {
-  filter: blur(28px) brightness(1.6);
-  transition: filter 1.2s ease;
-}
-
-/* HUD corner brackets framing the cube */
-.cube-corners {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 236px;
-  height: 236px;
-  animation: corners-breathe 6s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 4;
-}
-
-@keyframes corners-breathe {
-  0%, 100% { opacity: 0.45; }
-  50%       { opacity: 0.78; }
-}
-
-.cube-corner {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: rgba(56, 189, 248, 0.88);
-  border-style: solid;
-}
-
-.cube-corner--tl { top: 0;    left: 0;   border-width: 1.5px 0 0 1.5px; }
-.cube-corner--tr { top: 0;    right: 0;  border-width: 1.5px 1.5px 0 0; }
-.cube-corner--bl { bottom: 0; left: 0;   border-width: 0 0 1.5px 1.5px; }
-.cube-corner--br { bottom: 0; right: 0;  border-width: 0 1.5px 1.5px 0; }
-
-/* ─── AMBIENT GLOW ───────────────────────────────────── */
-.dcube-glow {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(
-    circle,
-    rgba(14, 165, 233, 0.28) 0%,
-    rgba(139, 92, 246, 0.16) 45%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  filter: blur(32px);
-  animation: glow-breathe 6s ease-in-out infinite;
-}
-
-@keyframes glow-breathe {
-  0%, 100% { opacity: 0.6;  transform: scale(0.92); }
-  50%       { opacity: 0.95; transform: scale(1.12); }
-}
-
-/* ─── SCAN LINE ──────────────────────────────────────── */
-.dcube-scanline {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 185px;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(56, 189, 248, 0.6) 22%,
-    rgba(56, 189, 248, 0.85) 50%,
-    rgba(56, 189, 248, 0.6) 78%,
-    transparent 100%
-  );
-  z-index: 10;
-  pointer-events: none;
-  animation: scan-sweep 4.5s linear infinite;
-}
-
-@keyframes scan-sweep {
-  0%   { top: calc(50% - 92px); opacity: 0; }
-  7%   { opacity: 1; }
-  93%  { opacity: 1; }
-  100% { top: calc(50% + 92px); opacity: 0; }
-}
-
-/* ─── THE 3D CUBE ────────────────────────────────────── */
-.dcube-perspective {
-  perspective: 860px;
-  perspective-origin: 50% 50%;
-  filter:
-    drop-shadow(0 0 8px rgba(56, 189, 248, 0.65))
-    drop-shadow(0 0 28px rgba(56, 189, 248, 0.28));
-}
-
-.dcube {
-  width: 160px;
-  height: 160px;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: cube-rotate 16s linear infinite;
-}
-
-.dcube__face {
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  background: rgba(14, 165, 233, 0.04);
-  border: 1px solid rgba(56, 189, 248, 0.72);
-  box-shadow:
-    inset 0 0 36px rgba(56, 189, 248, 0.14),
-    0 0 14px rgba(56, 189, 248, 0.12);
-}
-
-.dcube__face--front  { transform: translateZ(80px); }
-.dcube__face--back   { transform: rotateY(180deg) translateZ(80px); }
-.dcube__face--right  { transform: rotateY(90deg)  translateZ(80px); }
-.dcube__face--left   { transform: rotateY(-90deg) translateZ(80px); }
-.dcube__face--top    { transform: rotateX(90deg)  translateZ(80px); }
-.dcube__face--bottom { transform: rotateX(-90deg) translateZ(80px); }
-
-@keyframes cube-rotate {
-  from { transform: rotateX(15deg) rotateY(0deg);   }
-  to   { transform: rotateX(15deg) rotateY(360deg); }
-}
-
-/* ─── SLOW DECORATIVE RINGS ──────────────────────────── */
-.dcube-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid transparent;
-  pointer-events: none;
-}
-
-.dcube-ring--1 {
-  width: 248px; height: 248px;
-  border-color: rgba(56, 189, 248, 0.12);
-  animation: ring-spin 22s linear infinite;
-}
-
-.dcube-ring--2 {
-  width: 314px; height: 314px;
-  border-color: rgba(139, 92, 246, 0.08);
-  animation: ring-spin 35s linear infinite reverse;
-}
-
-.dcube-ring--3 {
-  width: 390px; height: 390px;
-  border-color: rgba(52, 211, 153, 0.04);
-  animation: ring-spin 52s linear infinite;
-}
-
-@keyframes ring-spin {
-  from { transform: rotate(0deg);   }
-  to   { transform: rotate(360deg); }
+  flex-wrap: wrap;
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -1415,34 +951,16 @@ body {
     margin-top: 16px;
   }
 
-  .dcube-wrapper { width: 280px; height: 280px; }
-
-  .dcube { width: 110px; height: 110px; }
-
-  .dcube__face {
-    width: 110px;
-    height: 110px;
+  .hero__line {
+    font-size: clamp(2.4rem, 12vw, 3.5rem);
   }
-
-  .dcube__face--front  { transform: translateZ(55px); }
-  .dcube__face--back   { transform: rotateY(180deg) translateZ(55px); }
-  .dcube__face--right  { transform: rotateY(90deg)  translateZ(55px); }
-  .dcube__face--left   { transform: rotateY(-90deg) translateZ(55px); }
-  .dcube__face--top    { transform: rotateX(90deg)  translateZ(55px); }
-  .dcube__face--bottom { transform: rotateX(-90deg) translateZ(55px); }
-
-  .dcube-ring--1 { width: 165px; height: 165px; }
-  .dcube-ring--2 { width: 208px; height: 208px; }
-  .dcube-ring--3 { width: 268px; height: 268px; }
-
-  .mini-cube { display: none; }
-  .cube-platform { display: none; }
-  .cube-scene { width: 290px; height: 290px; }
-
-  .cube-corners { width: 165px; height: 165px; }
-
-  .dcube-scanline { width: 125px; }
-  .dcube-glow { width: 200px; height: 200px; }
+  .hero__morph-wrap {
+    height: clamp(2.8rem, 13vw, 4rem);
+  }
+  .hero__ctas {
+    flex-direction: column;
+    align-items: center;
+  }
 
   .about__cards {
     grid-template-columns: repeat(2, 1fr);

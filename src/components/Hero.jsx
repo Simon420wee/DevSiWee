@@ -1,11 +1,8 @@
-import { lazy, Suspense } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { translations } from '../i18n'
 
-const HeroCube3D = lazy(() => import('./HeroCube3D'))
-
 /* ─── Deterministic star field ────────────────────────────── */
-// More stars, mix of 1px and 2px, all white-blue for space realism
 const BG_PARTICLES = Array.from({ length: 72 }, (_, i) => ({
   id: i,
   size: (i % 7 === 0) ? 2 : 1,
@@ -15,18 +12,18 @@ const BG_PARTICLES = Array.from({ length: 72 }, (_, i) => ({
   duration: 2.8 + (i % 9) * 1.1,
 }))
 
-/* ─── Left vertical menu ──────────────────────────────────── */
 const MENU_HREFS = ['#services', '#services', '#tools', '#contact']
+
+const MORPHING_WORDS = {
+  en:  ['WEBSITES', 'EXPERIENCES', 'LANDING PAGES', 'DIGITAL FUTURES'],
+  srb: ['SAJTOVE', 'ISKUSTVA', 'LANDING STRANE', 'DIGITALNE BUDUĆNOSTI'],
+}
 
 function VerticalMenu({ lang, setLang, menuLabels }) {
   return (
     <nav className="hero-vmenu" aria-label="Scene navigation">
       {menuLabels.map((label, i) => (
-        <a
-          key={i}
-          href={MENU_HREFS[i]}
-          className="hero-vmenu__item"
-        >
+        <a key={i} href={MENU_HREFS[i]} className="hero-vmenu__item">
           <span className="hero-vmenu__indicator" aria-hidden="true" />
           <span className="hero-vmenu__label">{label}</span>
         </a>
@@ -47,12 +44,23 @@ function VerticalMenu({ lang, setLang, menuLabels }) {
   )
 }
 
-/* EnergyStreaks removed — space atmosphere is now handled by
-   CSS nebula gradients + Three.js StarField / SpaceDebris / DistantPlanet */
-
-/* ─── Hero ───────────────────────────────────────────────── */
 export default function Hero({ lang, setLang }) {
   const t = translations[lang].hero
+  const words = MORPHING_WORDS[lang]
+  const [wordIndex, setWordIndex] = useState(0)
+  const [revealed, setRevealed] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setRevealed(true), 400)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex(i => (i + 1) % words.length)
+    }, 2200)
+    return () => clearInterval(interval)
+  }, [words.length])
 
   return (
     <section className="hero" id="home">
@@ -74,23 +82,88 @@ export default function Hero({ lang, setLang }) {
         ))}
       </div>
 
-      {/* Energy streaks removed — space elements live in the Three.js scene */}
-
       {/* Left cinematic vertical menu */}
       <VerticalMenu lang={lang} setLang={setLang} menuLabels={t.menu} />
 
-      {/* Core content — cube only */}
+      {/* Core content */}
       <div className="hero__center">
-        <motion.div
-          className="hero__visual"
-          initial={{ opacity: 0, scale: 0.72 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Suspense fallback={null}>
-            <HeroCube3D />
-          </Suspense>
-        </motion.div>
+        <div className="hero__text-block">
+
+          {/* Badge */}
+          <motion.div
+            className="hero__badge"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="hero__badge-dot" aria-hidden="true" />
+            {t.badge}
+          </motion.div>
+
+          {/* Line 1 — split reveal */}
+          <div className="hero__headline-wrap" aria-label={`We build ${words[wordIndex]}`}>
+            <motion.span
+              className="hero__line hero__line--static"
+              initial={{ y: 80, opacity: 0 }}
+              animate={revealed ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.85, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {lang === 'en' ? 'WE BUILD' : 'PRAVIMO'}
+            </motion.span>
+
+            {/* Line 2 — morphing word */}
+            <div className="hero__morph-wrap" aria-live="polite">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={wordIndex}
+                  className="hero__line hero__line--morph"
+                  initial={{ y: 70, opacity: 0, filter: 'blur(8px)' }}
+                  animate={{ y: 0,  opacity: 1, filter: 'blur(0px)' }}
+                  exit={{    y: -50, opacity: 0, filter: 'blur(6px)' }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {words[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Subtitle */}
+          <motion.p
+            className="hero__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {t.subtitle}
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="hero__ctas"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.a
+              href="#contact"
+              className="btn btn--primary btn--lg"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              {t.cta1}
+            </motion.a>
+            <motion.a
+              href="#services"
+              className="btn btn--ghost btn--lg"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              {t.cta2}
+            </motion.a>
+          </motion.div>
+
+        </div>
       </div>
 
       {/* Bottom cinematic labels */}
@@ -103,7 +176,9 @@ export default function Hero({ lang, setLang }) {
         <span className="hero__bottom-label hero__bottom-label--scroll">
           {t.scroll}
         </span>
-        <a href="#contact" className="hero__bottom-label hero__bottom-label--chat">CHAT WITH US</a>
+        <a href="#contact" className="hero__bottom-label hero__bottom-label--chat">
+          CHAT WITH US
+        </a>
       </motion.div>
     </section>
   )
