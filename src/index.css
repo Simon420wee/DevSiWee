@@ -1523,3 +1523,72 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ─────────────────────────────────────────────────────────
+   CUSTOM CURSOR
+───────────────────────────────────────────────────────── */
+* { cursor: none !important; }
+
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 6px; height: 6px;
+  background: #38bdf8;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  margin-left: -3px;
+  margin-top: -3px;
+  box-shadow: 0 0 8px rgba(56,189,248,0.9), 0 0 16px rgba(56,189,248,0.5);
+  transition: width 0.2s, height 0.2s, background 0.2s, box-shadow 0.2s;
+  will-change: transform;
+}
+
+.cursor-dot--hover {
+  width: 10px; height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  background: #a78bfa;
+  box-shadow: 0 0 12px rgba(167,139,250,0.9), 0 0 24px rgba(167,139,250,0.5);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(56,189,248,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  margin-left: -18px;
+  margin-top: -18px;
+  transition: width 0.3s, height 0.3s, border-color 0.3s, margin 0.3s;
+  will-change: transform;
+}
+
+.cursor-ring--hover {
+  width: 52px; height: 52px;
+  margin-left: -26px;
+  margin-top: -26px;
+  border-color: rgba(167,139,250,0.6);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   SCROLL PROGRESS BAR
+───────────────────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8 0%, #a78bfa 50%, #34d399 100%);
+  transform-origin: left;
+  z-index: 9999;
+  box-shadow: 0 0 8px rgba(56,189,248,0.6);
+}

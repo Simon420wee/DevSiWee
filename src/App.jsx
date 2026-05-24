@@ -8,6 +8,8 @@ import Pricing from './components/Pricing'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
+import CustomCursor from './components/CustomCursor'
+import ScrollProgress from './components/ScrollProgress'
 
 export default function App() {
   const [lang, setLang]     = useState('en')
@@ -26,11 +28,13 @@ export default function App() {
   return (
     <>
       {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
+      <CustomCursor />
+      <ScrollProgress />
       <Navbar lang={lang} setLang={setLang} />
       <main>
         <Hero lang={lang} setLang={setLang} />
         <About lang={lang} />
-<Technologies lang={lang} />
+        <Technologies lang={lang} />
         <Pricing lang={lang} />
         <Contact lang={lang} />
       </main>
