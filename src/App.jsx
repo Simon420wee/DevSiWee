@@ -3,6 +3,7 @@ import Lenis from 'lenis'
 import Hero from './components/Hero'
 import About from './components/About'
 import Technologies from './components/Technologies'
+import Pricing from './components/Pricing'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
@@ -31,6 +32,7 @@ export default function App() {
         <Hero lang={lang} setLang={setLang} />
         <About lang={lang} />
         <Technologies lang={lang} />
+        <Pricing lang={lang} />
         <Contact lang={lang} />
       </main>
       <Footer lang={lang} />
