@@ -2,21 +2,11 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { translations } from '../i18n'
 
-function DiamondMark() {
+function BrandMark() {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="diamond-grad" x1="0" y1="0" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#38bdf8"/>
-          <stop offset="50%" stopColor="#a78bfa"/>
-          <stop offset="100%" stopColor="#34d399"/>
-        </linearGradient>
-      </defs>
-      <rect x="11" y="1.5" width="13" height="13" rx="2" transform="rotate(45 11 1.5)"
-        fill="url(#diamond-grad)"
-        style={{filter:'drop-shadow(0 0 6px rgba(56,189,248,0.9)) drop-shadow(0 0 16px rgba(167,139,250,0.5))'}}
-      />
-    </svg>
+    <span className="brand-mark" aria-hidden="true">
+      <span className="brand-mark__inner" />
+    </span>
   )
 }
 
@@ -48,7 +38,7 @@ export default function Navbar({ lang, setLang }) {
     >
       {/* Logo */}
       <a href="#home" className="navbar__logo" onClick={() => setActive('home')}>
-        <DiamondMark />
+        <BrandMark />
         <span className="navbar__logo-text">
           DevSi<span className="navbar__logo-accent">Wee</span>
         </span>
