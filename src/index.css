@@ -522,11 +522,12 @@ body {
 }
 
 .hero__morph-wrap {
-  height: clamp(3.5rem, 9.5vw, 8rem);
+  min-height: clamp(2.4rem, 11vw, 8rem);
+  height: auto;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .hero__line--morph {
@@ -792,7 +793,8 @@ body {
     font-size: clamp(2rem, 10vw, 2.8rem);
   }
   .hero__morph-wrap {
-    height: clamp(2.4rem, 11vw, 3.2rem);
+    min-height: clamp(2.4rem, 11vw, 3.2rem);
+    height: auto;
   }
   .hero__ctas {
     flex-direction: column;

@@ -71,7 +71,7 @@ export default function Hero({ lang, setLang }) {
             </motion.span>
 
             {/* Line 2 — morphing word */}
-            <div className="hero__morph-wrap" aria-live="polite">
+            <div className="hero__morph-wrap" aria-live="polite" style={{ overflow: 'visible' }}>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={wordIndex}
