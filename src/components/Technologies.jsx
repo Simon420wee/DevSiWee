@@ -14,6 +14,14 @@ const TOOLS = [
   { name: 'WordPress',         color: '#60a5fa' },
   { name: 'SEO',               color: '#34d399' },
   { name: 'Responsive Design', color: '#38bdf8' },
+  { name: 'TypeScript',        color: '#3b82f6' },
+  { name: 'Next.js',           color: '#e2e8f0' },
+  { name: 'GSAP',              color: '#88ce02' },
+  { name: 'Python',            color: '#facc15' },
+  { name: 'Django',            color: '#34d399' },
+  { name: 'Node.js',           color: '#86efac' },
+  { name: 'AI Integration',    color: '#38bdf8' },
+  { name: 'Vercel',            color: '#e2e8f0' },
 ]
 
 export default function Technologies({ lang }) {
