@@ -89,17 +89,6 @@ export default function Hero({ lang, setLang }) {
       <div className="hero__center">
         <div className="hero__text-block">
 
-          {/* Badge */}
-          <motion.div
-            className="hero__badge"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className="hero__badge-dot" aria-hidden="true" />
-            {t.badge}
-          </motion.div>
-
           {/* Line 1 — split reveal */}
           <div className="hero__headline-wrap" aria-label={`We build ${words[wordIndex]}`}>
             <motion.span
