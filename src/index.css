@@ -789,10 +789,10 @@ body {
   }
 
   .hero__line {
-    font-size: clamp(2.4rem, 12vw, 3.5rem);
+    font-size: clamp(2rem, 10vw, 2.8rem);
   }
   .hero__morph-wrap {
-    height: clamp(2.8rem, 13vw, 4rem);
+    height: clamp(2.4rem, 11vw, 3.2rem);
   }
   .hero__ctas {
     flex-direction: column;
