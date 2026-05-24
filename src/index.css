@@ -1408,3 +1408,118 @@ body {
     min-height: 240px;
   }
 }
+
+/* ─────────────────────────────────────────────────────────
+   CONTACT FORM
+───────────────────────────────────────────────────────── */
+.contact-form {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.contact-form__field {
+  width: 100%;
+}
+
+.contact-form__input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: #e2e8f4;
+  font-size: 0.85rem;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  outline: none;
+  resize: none;
+  backdrop-filter: blur(8px);
+}
+
+.contact-form__input::placeholder {
+  color: rgba(226, 232, 244, 0.25);
+}
+
+.contact-form__input:focus {
+  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.04);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.08);
+}
+
+.contact-form__textarea {
+  min-height: 110px;
+}
+
+.contact-form__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: box-shadow 0.25s, opacity 0.2s;
+  box-shadow: 0 0 24px rgba(14, 165, 233, 0.3), 0 4px 16px rgba(0,0,0,0.3);
+  min-height: 50px;
+}
+
+.contact-form__btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.contact-form__btn:not(:disabled):hover {
+  box-shadow: 0 0 40px rgba(14, 165, 233, 0.5), 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.contact-form__btn-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-form__btn-inner--success {
+  color: #34d399;
+}
+
+.contact-form__btn-inner--error {
+  color: #f87171;
+}
+
+.contact-form__spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+}
