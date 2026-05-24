@@ -7,7 +7,7 @@ export default function Contact({ lang }) {
 
   const items = [
     { icon: Mail,   label: t.email,     href: `mailto:${t.email}` },
-    { icon: AtSign, label: t.instagram, href: 'https://instagram.com/devsiwee' },
+    { icon: AtSign, label: t.instagram, href: 'https://mail.google.com/mail/?view=cm&to=devsiwee@gmail.com', target: '_blank' },
   ]
 
   return (
@@ -24,8 +24,8 @@ export default function Contact({ lang }) {
         <p className="section__body">{t.body}</p>
 
         <div className="contact__items">
-          {items.map(({ icon: Icon, label, href }) => (
-            <a key={label} href={href} className="contact-item">
+          {items.map(({ icon: Icon, label, href, target }) => (
+            <a key={label} href={href} className="contact-item" target={target} rel={target ? 'noopener noreferrer' : undefined}>
               <span className="contact-item__icon">
                 <Icon size={16} strokeWidth={1.5} />
               </span>
