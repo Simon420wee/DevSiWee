@@ -12,36 +12,9 @@ const BG_PARTICLES = Array.from({ length: 72 }, (_, i) => ({
   duration: 2.8 + (i % 9) * 1.1,
 }))
 
-const MENU_HREFS = ['#services', '#services', '#tools', '#contact']
-
 const MORPHING_WORDS = {
   en:  ['WEBSITES', 'EXPERIENCES', 'LANDING PAGES', 'DIGITAL FUTURES'],
   srb: ['SAJTOVE', 'ISKUSTVA', 'LANDING STRANE', 'DIGITALNE BUDUĆNOSTI'],
-}
-
-function VerticalMenu({ lang, setLang, menuLabels }) {
-  return (
-    <nav className="hero-vmenu" aria-label="Scene navigation">
-      {menuLabels.map((label, i) => (
-        <a key={i} href={MENU_HREFS[i]} className="hero-vmenu__item">
-          <span className="hero-vmenu__indicator" aria-hidden="true" />
-          <span className="hero-vmenu__label">{label}</span>
-        </a>
-      ))}
-
-      <div className="hero-vmenu__lang">
-        <button
-          className={`hero-vmenu__lang-btn${lang === 'en' ? ' active' : ''}`}
-          onClick={() => setLang('en')}
-        >EN</button>
-        <span className="hero-vmenu__lang-sep">/</span>
-        <button
-          className={`hero-vmenu__lang-btn${lang === 'srb' ? ' active' : ''}`}
-          onClick={() => setLang('srb')}
-        >SRB</button>
-      </div>
-    </nav>
-  )
 }
 
 export default function Hero({ lang, setLang }) {
@@ -81,9 +54,6 @@ export default function Hero({ lang, setLang }) {
           />
         ))}
       </div>
-
-      {/* Left cinematic vertical menu */}
-      <VerticalMenu lang={lang} setLang={setLang} menuLabels={t.menu} />
 
       {/* Core content */}
       <div className="hero__center">

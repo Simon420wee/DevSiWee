@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Technologies from './components/Technologies'
-import Portfolio from './components/Portfolio'
 import Pricing from './components/Pricing'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -31,8 +30,7 @@ export default function App() {
       <main>
         <Hero lang={lang} setLang={setLang} />
         <About lang={lang} />
-        <Portfolio lang={lang} />
-        <Technologies lang={lang} />
+<Technologies lang={lang} />
         <Pricing lang={lang} />
         <Contact lang={lang} />
       </main>
