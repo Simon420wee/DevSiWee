@@ -1576,8 +1576,8 @@ body {
 /* Hide custom cursor on touch devices */
 @media (hover: none) and (pointer: coarse) {
   * { cursor: auto !important; }
-  .cursor-dot { display: none; }
-  .cursor-ring { display: none; }
+  .cursor-dot { display: none !important; }
+  .cursor-ring { display: none !important; }
 }
 
 /* ─────────────────────────────────────────────────────────
