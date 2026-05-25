@@ -4,8 +4,8 @@ import { Mail, AtSign, Send, Check, AlertCircle } from 'lucide-react'
 import { translations } from '../i18n'
 import emailjs from '@emailjs/browser'
 
-const SERVICE_ID  = 'service_nf60fmq'
-const TEMPLATE_ID = 'template_itrldsf'
+const SERVICE_ID  = 'service_r2ba0ku'
+const TEMPLATE_ID = 'template_9k8pm8d'
 const PUBLIC_KEY  = 'Wy2ebKJd-1myCHPZm'
 
 export default function Contact({ lang }) {
