@@ -38,7 +38,7 @@ export const translations = {
         {
           name: 'Starter',
           tagline: 'Your first step online',
-          price: '350',
+          price: '650',
           featured: false,
           features: [
             'Up to 5 pages',
@@ -53,7 +53,7 @@ export const translations = {
         {
           name: 'Pro',
           tagline: 'For serious businesses',
-          price: '750',
+          price: '1200',
           featured: true,
           features: [
             'Up to 10 pages',
@@ -68,7 +68,7 @@ export const translations = {
         {
           name: 'Elite',
           tagline: 'Full premium experience',
-          price: '1200',
+          price: '2000',
           featured: false,
           features: [
             'Unlimited pages',
@@ -83,7 +83,7 @@ export const translations = {
         {
           name: 'E-commerce',
           tagline: 'Online store ready to sell',
-          price: '900',
+          price: '1500',
           suffix: '+',
           featured: false,
           features: [
@@ -160,7 +160,7 @@ export const translations = {
         {
           name: 'Starter',
           tagline: 'Vaš prvi korak online',
-          price: '350',
+          price: '650',
           featured: false,
           features: [
             'Do 5 strana',
@@ -175,7 +175,7 @@ export const translations = {
         {
           name: 'Pro',
           tagline: 'Za ozbiljne biznise',
-          price: '750',
+          price: '1200',
           featured: true,
           features: [
             'Do 10 strana',
@@ -190,7 +190,7 @@ export const translations = {
         {
           name: 'Elite',
           tagline: 'Potpuno premium iskustvo',
-          price: '1200',
+          price: '2000',
           featured: false,
           features: [
             'Neograničeno strana',
@@ -205,7 +205,7 @@ export const translations = {
         {
           name: 'E-commerce',
           tagline: 'Online prodavnica spremna za rad',
-          price: '900',
+          price: '1500',
           suffix: '+',
           featured: false,
           features: [
