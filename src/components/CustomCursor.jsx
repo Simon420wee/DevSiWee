@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react'
 
 export default function CustomCursor() {
+  if (typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+    return null
+  }
+
   const dotRef  = useRef(null)
   const ringRef = useRef(null)
 
