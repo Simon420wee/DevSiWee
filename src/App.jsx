@@ -45,8 +45,11 @@ export default function App() {
     }
     document.addEventListener('click', onAnchorClick)
 
-    /* Scroll progress bar */
+    /* Scroll progress bar + keep ScrollTrigger in sync on ANY scroll
+       (native scrollbar drag / keyboard don't go through Lenis' wheel path,
+       so we force an update here too — fixes scrubbed sections getting stuck) */
     const onScroll = () => {
+      ScrollTrigger.update()
       const max = document.documentElement.scrollHeight - window.innerHeight
       const p = max > 0 ? window.scrollY / max : 0
       if (progressRef.current) progressRef.current.style.transform = `scaleX(${p})`
@@ -54,9 +57,14 @@ export default function App() {
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
 
+    /* Recalculate pin/scrub geometry when the viewport changes */
+    const onResize = () => ScrollTrigger.refresh()
+    window.addEventListener('resize', onResize)
+
     return () => {
       document.removeEventListener('click', onAnchorClick)
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
       gsap.ticker.remove(onTick)
       lenis.destroy()
     }
@@ -84,8 +92,8 @@ export default function App() {
       /* Hero warp-out: fly through the word ALIVE */
       const heroTl = gsap.timeline({
         scrollTrigger: {
-          trigger: '.hero', start: 'top top', end: '+=180%',
-          scrub: 0.6, pin: true, anticipatePin: 1,
+          trigger: '.hero', start: 'top top', end: '+=110%',
+          scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
         },
       })
       heroTl

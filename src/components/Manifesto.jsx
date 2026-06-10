@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { translations } from '../i18n'
 
 export default function Manifesto({ lang }) {
@@ -8,9 +9,10 @@ export default function Manifesto({ lang }) {
     <section className="manifesto" data-screen-label="Manifesto">
       <p className="manifesto-text">
         {words.map((w, i) => (
-          <span className="w" key={i}>
-            {w}{i < words.length - 1 ? ' ' : ''}
-          </span>
+          <Fragment key={i}>
+            <span className="w">{w}</span>
+            {i < words.length - 1 ? ' ' : ''}
+          </Fragment>
         ))}
       </p>
     </section>
