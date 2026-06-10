@@ -16,6 +16,10 @@ import LoadingScreen from './components/LoadingScreen'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/* Mobile browsers fire resize when the URL bar shows/hides on scroll.
+   Without this, pinned sections re-measure mid-scroll and jump/overlap. */
+ScrollTrigger.config({ ignoreMobileResize: true })
+
 export default function App() {
   const [lang, setLang]     = useState('en')
   const [loaded, setLoaded] = useState(false)
@@ -57,8 +61,14 @@ export default function App() {
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
 
-    /* Recalculate pin/scrub geometry when the viewport changes */
-    const onResize = () => ScrollTrigger.refresh()
+    /* Recalculate pin/scrub geometry only on real width changes — ignore the
+       height-only resizes mobile browsers fire when the URL bar shows/hides */
+    let lastW = window.innerWidth
+    const onResize = () => {
+      if (window.innerWidth === lastW) return
+      lastW = window.innerWidth
+      ScrollTrigger.refresh()
+    }
     window.addEventListener('resize', onResize)
 
     return () => {
@@ -89,19 +99,23 @@ export default function App() {
         opacity: 0, y: 24, duration: 0.8, ease: 'power2.out', stagger: 0.12, delay: 0.7,
       })
 
-      /* Hero warp-out: fly through the word ALIVE */
-      const heroTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.hero', start: 'top top', end: '+=110%',
-          scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
-        },
-      })
-      heroTl
-        .to('.eyebrow, .hero-sub, .hero-cta, .scroll-hint', { opacity: 0, y: -40, duration: 0.18 }, 0)
-        .to('.hero-title .line:nth-child(1)', { xPercent: -34, opacity: 0, duration: 0.45 }, 0.04)
-        .to('.hero-title .line:nth-child(2)', { xPercent: 26, opacity: 0, duration: 0.45 }, 0.1)
-        .to('.hero-title .line:nth-child(3)', { xPercent: -22, opacity: 0, duration: 0.45 }, 0.16)
-        .to('.hero-title .alive', { scale: 13, opacity: 0, transformOrigin: '50% 52%', ease: 'power2.in', duration: 0.7 }, 0.22)
+      /* Hero warp-out: fly through the word ALIVE.
+         Desktop only — pinning is the jankiest thing on mobile browsers, so
+         on phones the hero just scrolls away normally. */
+      if (!mobile) {
+        const heroTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.hero', start: 'top top', end: '+=110%',
+            scrub: 0.6, pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+          },
+        })
+        heroTl
+          .to('.eyebrow, .hero-sub, .hero-cta, .scroll-hint', { opacity: 0, y: -40, duration: 0.18 }, 0)
+          .to('.hero-title .line:nth-child(1)', { xPercent: -34, opacity: 0, duration: 0.45 }, 0.04)
+          .to('.hero-title .line:nth-child(2)', { xPercent: 26, opacity: 0, duration: 0.45 }, 0.1)
+          .to('.hero-title .line:nth-child(3)', { xPercent: -22, opacity: 0, duration: 0.45 }, 0.16)
+          .to('.hero-title .alive', { scale: 13, opacity: 0, transformOrigin: '50% 52%', ease: 'power2.in', duration: 0.7 }, 0.22)
+      }
 
       /* Manifesto: words ignite one by one */
       const words = document.querySelectorAll('.manifesto-text .w')
