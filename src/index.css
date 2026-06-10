@@ -716,6 +716,8 @@ body {
     gap: 28px;
   }
   .service-intro { width: auto; min-width: 0; }
+  /* cards stack vertically on mobile, so the horizontal "keep scrolling ->" hint is misleading */
+  .service-intro .drag-hint { display: none; }
   .service-card { width: auto; }
   .service-card .num { font-size: 7rem; top: -16px; }
   .service-card h3 { max-width: 100%; }

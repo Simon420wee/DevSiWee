@@ -13,8 +13,6 @@ export default function Hero({ lang }) {
 
   return (
     <header className="hero" id="home" data-screen-label="Hero">
-      <p className="mono eyebrow">{t.eyebrow}</p>
-
       <h1 className="hero-title" aria-label={lines.join(' ')}>
         {lines.map((line, i) =>
           i === lines.length - 1 ? (
