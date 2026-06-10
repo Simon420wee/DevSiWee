@@ -8,7 +8,6 @@ import Pricing from './components/Pricing'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import LoadingScreen from './components/LoadingScreen'
-import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
 
 export default function App() {
@@ -28,7 +27,6 @@ export default function App() {
   return (
     <>
       {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
-      <CustomCursor />
       <ScrollProgress />
       <Navbar lang={lang} setLang={setLang} />
       <main>
