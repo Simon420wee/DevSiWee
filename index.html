@@ -1,32 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="sr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05060f" />
 
     <!-- ── Primary SEO ── -->
-    <title>DevSiWee | Modern Websites & Web Experiences</title>
-    <meta name="description" content="DevSiWee builds modern websites, landing pages and animated web experiences. Hand-coded, SEO-ready, premium quality from Belgrade." />
-    <meta name="keywords" content="web design, web development, landing page, website, animated website, digital studio, DevSiWee" />
+    <title>DevSiWee — Izrada sajtova i web dizajn | Beograd, Srbija</title>
+    <meta name="description" content="Web studio iz Beograda — izrada modernih sajtova, web dizajn, online prodavnice i SEO za mala i srednja preduzeća u Srbiji. Ručno kodirano, brzo i optimizovano. Pogledajte cene i započnite projekat." />
+    <meta name="keywords" content="izrada sajtova Srbija, izrada sajtova Beograd, web dizajn Beograd, izrada web stranica, web development Srbija, pravljenje sajtova, web agencija Beograd, izrada sajta cena, wordpress sajt Srbija, izrada online prodavnice, izrada landing strane, web studio Beograd, dizajn sajta, SEO optimizacija Srbija, izrada web sajta cena, profesionalna izrada sajtova" />
     <meta name="author" content="DevSiWee" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="Serbian" />
+    <meta name="revisit-after" content="7 days" />
     <link rel="canonical" href="https://www.devsiwee.com/" />
 
-    <!-- ── Open Graph (Facebook, LinkedIn, WhatsApp) ── -->
+    <!-- ── Hreflang (EN / SR language variants) ── -->
+    <link rel="alternate" hreflang="sr-RS" href="https://www.devsiwee.com/?lang=sr" />
+    <link rel="alternate" hreflang="sr" href="https://www.devsiwee.com/?lang=sr" />
+    <link rel="alternate" hreflang="en" href="https://www.devsiwee.com/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://www.devsiwee.com/" />
+
+    <!-- ── Geo targeting (Belgrade, Serbia) ── -->
+    <meta name="geo.region" content="RS-00" />
+    <meta name="geo.placename" content="Beograd" />
+    <meta name="geo.position" content="44.787197;20.457273" />
+    <meta name="ICBM" content="44.787197, 20.457273" />
+
+    <!-- ── Open Graph (Facebook, LinkedIn, WhatsApp, Viber) ── -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.devsiwee.com" />
-    <meta property="og:title" content="DevSiWee — Modern Websites & Digital Experiences" />
-    <meta property="og:description" content="We build modern websites, landing pages and animated web experiences. Hand-coded, SEO-ready, premium quality." />
+    <meta property="og:url" content="https://www.devsiwee.com/" />
+    <meta property="og:title" content="DevSiWee — Izrada sajtova i web dizajn | Beograd, Srbija" />
+    <meta property="og:description" content="Web studio iz Beograda — izrada modernih sajtova, web dizajn, online prodavnice i SEO za mala i srednja preduzeća u Srbiji." />
     <meta property="og:image" content="https://www.devsiwee.com/og-image.png" />
+    <meta property="og:image:width" content="2172" />
+    <meta property="og:image:height" content="724" />
+    <meta property="og:image:alt" content="DevSiWee — web studio iz Beograda" />
     <meta property="og:site_name" content="DevSiWee" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:locale:alternate" content="en_US" />
 
     <!-- ── Twitter / X Card ── -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.devsiwee.com/" />
-    <meta name="twitter:title" content="DevSiWee — Modern Websites & Digital Experiences" />
-    <meta name="twitter:description" content="We build modern websites, landing pages and animated web experiences. Hand-coded, SEO-ready, premium quality." />
+    <meta name="twitter:title" content="DevSiWee — Izrada sajtova i web dizajn | Beograd" />
+    <meta name="twitter:description" content="Web studio iz Beograda — izrada modernih sajtova, web dizajn, online prodavnice i SEO za firme u Srbiji." />
     <meta name="twitter:image" content="https://www.devsiwee.com/og-image.png" />
+    <meta name="twitter:image:alt" content="DevSiWee — web studio iz Beograda" />
 
     <!-- ── Favicons ── -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -34,9 +55,10 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <!-- ── Fonts (non-render-blocking) ── -->
+    <!-- ── Fonts (preconnect + preload, non-render-blocking) ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
@@ -46,16 +68,102 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "DevSiWee",
-      "url": "https://www.devsiwee.com",
-      "email": "devsiwee@gmail.com",
-      "description": "Digital studio specializing in modern websites, landing pages, web applications and animated web experiences.",
-      "serviceType": ["Web Design", "Web Development", "Landing Page Design", "Web Animation"],
-      "areaServed": "Worldwide",
-      "logo": "https://www.devsiwee.com/favicon.png",
-      "sameAs": [
-        "https://www.instagram.com/devsiwee"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.devsiwee.com/#organization",
+          "name": "DevSiWee",
+          "url": "https://www.devsiwee.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.devsiwee.com/favicon.png",
+            "width": 512,
+            "height": 512
+          },
+          "image": "https://www.devsiwee.com/og-image.png",
+          "email": "devsiwee@gmail.com",
+          "description": "Web studio iz Beograda specijalizovan za izradu sajtova, web dizajn, online prodavnice i SEO optimizaciju.",
+          "sameAs": [
+            "https://www.instagram.com/devsiwee"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.devsiwee.com/#website",
+          "url": "https://www.devsiwee.com/",
+          "name": "DevSiWee",
+          "description": "Izrada sajtova i web dizajn — Beograd, Srbija",
+          "publisher": { "@id": "https://www.devsiwee.com/#organization" },
+          "inLanguage": ["sr-RS", "en"]
+        },
+        {
+          "@type": ["ProfessionalService", "LocalBusiness"],
+          "@id": "https://www.devsiwee.com/#localbusiness",
+          "name": "DevSiWee",
+          "image": "https://www.devsiwee.com/og-image.png",
+          "url": "https://www.devsiwee.com/",
+          "email": "devsiwee@gmail.com",
+          "description": "Izrada modernih sajtova, web dizajn, online prodavnice i SEO za mala i srednja preduzeća u Beogradu i celoj Srbiji.",
+          "priceRange": "€€",
+          "currenciesAccepted": "EUR, RSD",
+          "parentOrganization": { "@id": "https://www.devsiwee.com/#organization" },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Beograd",
+            "addressRegion": "Beograd",
+            "addressCountry": "RS"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 44.787197,
+            "longitude": 20.457273
+          },
+          "areaServed": [
+            { "@type": "Country", "name": "Srbija" },
+            { "@type": "City", "name": "Beograd" }
+          ],
+          "serviceType": [
+            "Izrada sajtova",
+            "Web dizajn",
+            "Izrada online prodavnica",
+            "SEO optimizacija",
+            "Web development"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Paketi za izradu sajtova",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Starter",
+                "priceCurrency": "EUR",
+                "price": "650",
+                "description": "Sajt do 5 strana, osnovni SEO, responsive dizajn."
+              },
+              {
+                "@type": "Offer",
+                "name": "Pro",
+                "priceCurrency": "EUR",
+                "price": "1200",
+                "description": "Sajt do 10 strana, napredni SEO, custom animacije, dvojezičnost."
+              },
+              {
+                "@type": "Offer",
+                "name": "Elite",
+                "priceCurrency": "EUR",
+                "price": "2000",
+                "description": "Neograničeno strana, kompletan branding, web app funkcije."
+              },
+              {
+                "@type": "Offer",
+                "name": "E-commerce",
+                "priceCurrency": "EUR",
+                "price": "1500",
+                "description": "Online prodavnica sa katalogom, plaćanjem i sistemom inventara."
+              }
+            ]
+          }
+        }
       ]
     }
     </script>

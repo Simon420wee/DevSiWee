@@ -1,4 +1,8 @@
+# DevSiWee — https://www.devsiwee.com
 User-agent: *
 Allow: /
 
+# Block nothing — single-page marketing site
+
 Sitemap: https://www.devsiwee.com/sitemap.xml
+Host: https://www.devsiwee.com

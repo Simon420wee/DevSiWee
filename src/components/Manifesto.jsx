@@ -6,7 +6,7 @@ export default function Manifesto({ lang }) {
   const words = text.trim().split(/\s+/)
 
   return (
-    <section className="manifesto" data-screen-label="Manifesto">
+    <section className="manifesto" data-screen-label="Manifesto" aria-label={lang === 'en' ? 'Our approach' : 'Naš pristup'}>
       <p className="manifesto-text">
         {words.map((w, i) => (
           <Fragment key={i}>

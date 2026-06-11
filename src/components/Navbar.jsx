@@ -19,9 +19,9 @@ export default function Navbar({ lang, setLang }) {
   ]
 
   return (
-    <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav">
-      <a className="nav-logo" href="#home">
-        <img src="/logo.png" alt="DevSiWee logo" />
+    <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav" aria-label={lang === 'en' ? 'Main navigation' : 'Glavna navigacija'}>
+      <a className="nav-logo" href="#home" aria-label="DevSiWee — početna">
+        <img src="/logo.png" alt="DevSiWee logo" width="30" height="30" />
         <span>DevSi<span className="wee">Wee</span></span>
       </a>
 

@@ -20,11 +20,25 @@ gsap.registerPlugin(ScrollTrigger)
    Without this, pinned sections re-measure mid-scroll and jump/overlap. */
 ScrollTrigger.config({ ignoreMobileResize: true })
 
+/* Serbian is the primary market, so SR is the default; ?lang=en opts into English. */
+function initialLang() {
+  if (typeof window === 'undefined') return 'srb'
+  const p = new URLSearchParams(window.location.search).get('lang')
+  if (p === 'en') return 'en'
+  if (p === 'sr' || p === 'srb') return 'srb'
+  return 'srb'
+}
+
 export default function App() {
-  const [lang, setLang]     = useState('en')
+  const [lang, setLang]     = useState(initialLang)
   const [loaded, setLoaded] = useState(false)
   const rootRef = useRef(null)
   const progressRef = useRef(null)
+
+  /* Keep <html lang> in sync with the active language for SEO / a11y */
+  useEffect(() => {
+    document.documentElement.lang = lang === 'srb' ? 'sr' : 'en'
+  }, [lang])
 
   /* ── Lenis smooth scroll, driven through GSAP ticker so ScrollTrigger stays in sync ── */
   useEffect(() => {

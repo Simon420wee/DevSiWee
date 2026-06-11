@@ -45,15 +45,17 @@ export default function LoadingScreen({ onDone }) {
           <span className="ls-bracket ls-bracket--br" />
 
           <div className="ls-content">
-            {/* Main wordmark */}
-            <motion.h1
+            {/* Main wordmark (decorative — not the page heading) */}
+            <motion.div
               className="ls-wordmark"
+              role="img"
+              aria-label="DevSiWee"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.18, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               DevSi<span className="ls-wordmark__accent">Wee</span>
-            </motion.h1>
+            </motion.div>
 
             {/* Progress bar */}
             <motion.div

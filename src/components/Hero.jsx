@@ -18,7 +18,7 @@ export default function Hero({ lang }) {
           i === lines.length - 1 ? (
             <span className="line alive" key={i}>{line}</span>
           ) : (
-            <span className="line" key={i} aria-hidden="true"><Chars text={line} /></span>
+            <span className="line" key={i} aria-hidden="true"><Chars text={line} />{' '}</span>
           )
         )}
       </h1>
